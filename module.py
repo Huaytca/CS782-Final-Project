@@ -226,7 +226,7 @@ def preprocess_bluetooth_signals(df, signal_column='signal', dataset='D'):
             signal = signal.values
         
         # 1. Bandpass filter only for high-rate datasets (A/B/C)
-        if dataset in ['B', 'C']:# was ['A', 'B', 'C']
+        if dataset in ['A', 'B', 'C']:# was ['A', 'B', 'C']
             filtered_signal = bandpass_filter(signal, fs, dataset, low_cutoff, high_cutoff)
             filtered_signal = filtered_signal[:-int(filtered_signal.size * 0.05)] # Spoiler alert: it be helping
         else:

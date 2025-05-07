@@ -216,19 +216,19 @@ def visualize_iq_data(i_data, q_data):
     plt.show()
 if __name__ == '__main__':
     # Set the root directory
-    root_directory = os.path.join(os.path.join(os.getcwd(), 'Bluetooth Datasets'), 'Dataset 5 Gsps')
+    root_directory = os.path.join(os.path.join(os.getcwd(), 'Bluetooth Datasets'), 'Dataset 10 Gsps')
 
     data = load_data(root_directory)
 
-    preprocessed_data = preprocess_bluetooth_signals(data, signal_column='signal', dataset='A')
+    preprocessed_data = preprocess_bluetooth_signals(data, signal_column='signal', dataset='B')
     print(preprocessed_data.columns)
     sampled_data = preprocessed_data.groupby('label').sample(n=20, random_state=42)
-    fs = 5e9 # For Dataset A
+    fs = 10e9 # For Dataset A
     for idx, row in sampled_data.iterrows():
         original_signal = row['signal']
         filtered_signal = row['filtered_signal']
         normalized_signal = row['normalized_signal']
-        visualize_preprocessing(original_signal, filtered_signal, normalized_signal, fs, dataset='A')
+        visualize_preprocessing(original_signal, filtered_signal, normalized_signal, fs, dataset='B')
         i_data = row['I_data']
         q_data = row['Q_data']
         visualize_iq_data(i_data, q_data)
